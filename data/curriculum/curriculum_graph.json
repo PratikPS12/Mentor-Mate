@@ -1,0 +1,184 @@
+{
+  "curricula": [
+    {
+      "id": "curr_cbse_10",
+      "board": "CBSE",
+      "grade": "10",
+      "title": "CBSE Class 10 Foundation & Boards",
+      "subjects": ["Math", "Science"]
+    },
+    {
+      "id": "curr_jee_11_12",
+      "board": "JEE",
+      "grade": "11-12",
+      "title": "JEE Main & Advanced Integrated Track",
+      "subjects": ["Math", "Physics", "Chemistry"]
+    },
+    {
+      "id": "curr_neet_11_12",
+      "board": "NEET",
+      "grade": "11-12",
+      "title": "NEET Medical Entrance Track",
+      "subjects": ["Biology", "Physics", "Chemistry"]
+    },
+    {
+      "id": "curr_foundation_all",
+      "board": "All",
+      "grade": "6-12",
+      "title": "Aptitude, Logic & Foundational Reasoning",
+      "subjects": ["Aptitude", "Reasoning"]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "concept_math_linear_eq",
+      "subject": "Math",
+      "chapter": "Linear Equations",
+      "topic": "Algebra",
+      "name": "Solving Linear Equations in One Variable",
+      "prerequisites": [],
+      "description": "Standard linear form ax + b = c, transposition, and variable isolation.",
+      "default_bkt": { "p_l0": 0.4, "p_t": 0.25, "p_s": 0.1, "p_g": 0.2 }
+    },
+    {
+      "id": "concept_math_algebraic_identities",
+      "subject": "Math",
+      "chapter": "Polynomials",
+      "topic": "Algebra",
+      "name": "Standard Algebraic Identities",
+      "prerequisites": ["concept_math_linear_eq"],
+      "description": "Expansion of (a+b)^2, (a-b)^2, a^2-b^2, and related identities.",
+      "default_bkt": { "p_l0": 0.35, "p_t": 0.2, "p_s": 0.1, "p_g": 0.15 }
+    },
+    {
+      "id": "concept_math_quad_roots",
+      "subject": "Math",
+      "chapter": "Quadratic Equations",
+      "topic": "Algebra",
+      "name": "Roots of Quadratic Equations",
+      "prerequisites": ["concept_math_algebraic_identities"],
+      "description": "Factorization and quadratic formula to find roots of ax^2 + bx + c = 0.",
+      "default_bkt": { "p_l0": 0.3, "p_t": 0.2, "p_s": 0.12, "p_g": 0.18 }
+    },
+    {
+      "id": "concept_chem_iupac",
+      "subject": "Chemistry",
+      "chapter": "Carbon & Compounds",
+      "topic": "Organic Chemistry",
+      "name": "IUPAC Nomenclature of Alcohols and Hydrocarbons",
+      "prerequisites": [],
+      "description": "Systematic naming of alkanes, alkenes, alkynes, and functional groups like alcohols.",
+      "default_bkt": { "p_l0": 0.35, "p_t": 0.2, "p_s": 0.08, "p_g": 0.2 }
+    },
+    {
+      "id": "concept_chem_aromatic",
+      "subject": "Chemistry",
+      "chapter": "Hydrocarbons",
+      "topic": "Organic Chemistry",
+      "name": "Aromatic Compounds and Benzene Structure",
+      "prerequisites": ["concept_chem_iupac"],
+      "description": "Planar cyclic conjugated systems, Huckel's rule, and benzene properties.",
+      "default_bkt": { "p_l0": 0.3, "p_t": 0.18, "p_s": 0.1, "p_g": 0.15 }
+    },
+    {
+      "id": "concept_chem_reaction_mechanisms",
+      "subject": "Chemistry",
+      "chapter": "Haloalkanes and Haloarenes",
+      "topic": "Organic Chemistry",
+      "name": "Nucleophilic Substitution Mechanisms (SN1 / SN2)",
+      "prerequisites": ["concept_chem_iupac"],
+      "description": "Carbocation intermediate in unimolecular SN1 vs concerted bimolecular SN2.",
+      "default_bkt": { "p_l0": 0.25, "p_t": 0.15, "p_s": 0.15, "p_g": 0.12 }
+    },
+    {
+      "id": "concept_phys_speed_dist",
+      "subject": "Physics",
+      "chapter": "Motion in a Straight Line",
+      "topic": "Kinematics",
+      "name": "Speed, Distance, and Time Relations",
+      "prerequisites": [],
+      "description": "Uniform motion relations: distance = speed x time and dimensional consistency.",
+      "default_bkt": { "p_l0": 0.45, "p_t": 0.25, "p_s": 0.08, "p_g": 0.2 }
+    },
+    {
+      "id": "concept_phys_force_units",
+      "subject": "Physics",
+      "chapter": "Laws of Motion",
+      "topic": "Dynamics",
+      "name": "Newton's Second Law and Units of Force",
+      "prerequisites": ["concept_phys_speed_dist"],
+      "description": "F = ma, definition of Newton (kg m/s^2), and SI base units.",
+      "default_bkt": { "p_l0": 0.4, "p_t": 0.22, "p_s": 0.09, "p_g": 0.18 }
+    },
+    {
+      "id": "concept_phys_gravitation",
+      "subject": "Physics",
+      "chapter": "Gravitation",
+      "topic": "Mechanics",
+      "name": "Acceleration Due to Gravity",
+      "prerequisites": ["concept_phys_force_units"],
+      "description": "Earth surface gravitational acceleration g = 9.8 m/s^2 and variation with height/depth.",
+      "default_bkt": { "p_l0": 0.35, "p_t": 0.2, "p_s": 0.1, "p_g": 0.15 }
+    },
+    {
+      "id": "concept_bio_cardio",
+      "subject": "Biology",
+      "chapter": "Life Processes",
+      "topic": "Human Physiology",
+      "name": "Human Circulatory System and Heart Anatomy",
+      "prerequisites": [],
+      "description": "Structure of 4-chambered human heart, systemic and pulmonary circulation.",
+      "default_bkt": { "p_l0": 0.4, "p_t": 0.22, "p_s": 0.08, "p_g": 0.2 }
+    },
+    {
+      "id": "concept_bio_cell",
+      "subject": "Biology",
+      "chapter": "The Fundamental Unit of Life",
+      "topic": "Cell Biology",
+      "name": "Mitochondria and Cellular Energy Generation",
+      "prerequisites": [],
+      "description": "Mitochondria as the powerhouse of cell, ATP synthesis, and double-membrane organelle.",
+      "default_bkt": { "p_l0": 0.42, "p_t": 0.25, "p_s": 0.08, "p_g": 0.2 }
+    },
+    {
+      "id": "concept_bio_genetics",
+      "subject": "Biology",
+      "chapter": "Heredity and Evolution",
+      "topic": "Genetics",
+      "name": "DNA Structure and Genetic Material",
+      "prerequisites": ["concept_bio_cell"],
+      "description": "Deoxyribonucleic acid chemical composition, double helix, and genetic inheritance.",
+      "default_bkt": { "p_l0": 0.38, "p_t": 0.2, "p_s": 0.1, "p_g": 0.18 }
+    },
+    {
+      "id": "concept_apt_series",
+      "subject": "Aptitude",
+      "chapter": "Number Series",
+      "topic": "Logical Aptitude",
+      "name": "Geometric & Arithmetic Progression Series",
+      "prerequisites": [],
+      "description": "Identifying patterns, common differences, and ratio multipliers in numerical sequences.",
+      "default_bkt": { "p_l0": 0.4, "p_t": 0.25, "p_s": 0.08, "p_g": 0.25 }
+    },
+    {
+      "id": "concept_apt_analogies",
+      "subject": "Reasoning",
+      "chapter": "Verbal Reasoning",
+      "topic": "Logical Aptitude",
+      "name": "Letter Inversion and Word Analogies",
+      "prerequisites": [],
+      "description": "Reversal of letter positions, positional shifts, and relationship mappings.",
+      "default_bkt": { "p_l0": 0.45, "p_t": 0.25, "p_s": 0.08, "p_g": 0.22 }
+    },
+    {
+      "id": "concept_apt_geometry",
+      "subject": "Reasoning",
+      "chapter": "Non-Verbal Reasoning",
+      "topic": "Logical Aptitude",
+      "name": "Geometric Classification and Polygon vs Curves",
+      "prerequisites": [],
+      "description": "Distinguishing straight-line polygons from curved closed figures like circles.",
+      "default_bkt": { "p_l0": 0.5, "p_t": 0.28, "p_s": 0.06, "p_g": 0.25 }
+    }
+  ]
+}

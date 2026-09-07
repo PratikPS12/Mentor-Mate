@@ -1,0 +1,229 @@
+================================================================================
+                    MENTOR MATE — PROJECT DESCRIPTION REPORT
+      An AI-Powered Academic Learning Twin Built on 100% Real Student Data
+================================================================================
+
+1. EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
+Mentor Mate is an autonomous, personalized academic learning twin designed to 
+fundamentally transform how students prepare for school, board, entrance, and 
+competitive university examinations.
+
+Unlike traditional educational technology platforms that force every student into 
+pre-recorded, one-size-fits-all video playlists and static, hardcoded question banks, 
+Mentor Mate operates on a purely student-driven paradigm. Every component—from 
+curriculum recommendations and daily study schedules to dynamic diagnostic tests 
+and Socratic AI tutoring—dynamically adapts to the student's actual academic grade 
+level, specific exam goal, and uploaded handwritten study notes.
+
+Core Distinctions:
+* Zero Fake Testimonials & Fabricated Data: The platform rejects manufactured 5-star 
+  ratings, synthetic student quotes, and fake vanity metrics. Everything on the 
+  dashboard is 100% authentic and derived strictly from the individual student's 
+  real performance.
+* Zero Hardcoded Diagnostic Questions: Assessment questions are never drawn from 
+  rigid, memorized static banks; they are generated dynamically by advanced Large 
+  Language Models (LLMs) calibrated to the student's exact topic, grade level, and 
+  personal notes.
+* Direct Grounding in Student Materials: Ingests real handwritten notebook photos 
+  and lecture slide PDFs via Multimodal Vision OCR, automatically extracting 
+  formulas, summaries, and generating custom practice drills.
+* Rigorous Cognitive & Psychometric Modeling: Employs Bayesian Knowledge Tracing (BKT) 
+  and Item Response Theory (IRT) to measure true latent mastery and diagnose exact 
+  cognitive misconceptions.
+
+
+2. THE PHILOSOPHY & GENESIS
+--------------------------------------------------------------------------------
+The Modern EdTech Dilemma:
+Most contemporary educational platforms suffer from three systemic flaws:
+1. The "Mass Assembly Line" Model: Millions of students with vastly different 
+   cognitive gaps, study rhythms, and available daily hours are presented with 
+   identical linear syllabi.
+2. Disconnected Class Notes: Students spend hundreds of hours taking handwritten 
+   notes in school or college lectures, yet their online platforms completely ignore 
+   this material, treating it as dead paper.
+3. Manufactured Credibility: Platforms rely heavily on fabricated testimonials, 
+   cherry-picked rank lists, and hardcoded multiple-choice questions that encourage 
+   rote memorization rather than deep intuition.
+
+The Mentor Mate Paradigm:
+Mentor Mate was architected as an Academic Learning Twin. Just as an industrial 
+digital twin models the real-time operational state of a physical asset, Mentor 
+Mate continuously models:
+* What the student has actually studied.
+* What concepts they deeply understand versus where procedural or conceptual 
+  misconceptions exist.
+* How fast their memory decays according to psychometric retention curves.
+* How many hours they realistically have available each day until exam day.
+
+
+3. ACADEMIC SCOPE & AUDIENCE ADAPTABILITY
+--------------------------------------------------------------------------------
+The platform features an Interconnected Curriculum Router that calibrates the entire 
+interface to the student's exact academic tier:
+
+1. Class 10 (Secondary Foundations):
+   * Curriculum Focus: 10th CBSE Boards, 10th ICSE Boards, State Boards, NTSE & 
+     Olympiad Foundations, and Early JEE/NEET Foundations.
+   * Pedagogy: Emphasizes fundamental scientific principles, structured step-by-step 
+     problem-solving, and foundational mathematics.
+
+2. Class 11 & 12 (Senior Secondary & National Entrances):
+   * Curriculum Focus: JEE (Main & Advanced), NEET (Medical Entrance), MHT-CET / 
+     State Engineering CETs, CUET (Central Universities), and 12th Senior Secondary 
+     Boards.
+   * Pedagogy: Rigorous multi-step analytical derivations, multi-concept physics 
+     problems, reaction mechanisms, and speed-accuracy optimization.
+
+3. College Undergraduate & Higher Studies:
+   * Curriculum Focus: GATE (Computer Science, ECE, Mechanical), Software 
+     Engineering & Campus Placements (Data Structures & Algorithms, System Design), 
+     Data Science & Machine Learning, CAT (IIM / MBA Management), GRE / International 
+     Admissions, and Core University Semesters.
+   * Pedagogy: Algorithmic complexity, systems architecture, advanced mathematical 
+     modeling, and university-level research problem sets.
+
+4. Arbitrary Custom Goal Engine:
+   * Students are never confined to predefined drop-down options. A student can 
+     type any custom goal (e.g., GATE CS 2027, Full-Stack Placement & DSA, BITSAT, 
+     ISI Entrance), and the engine dynamically recalibrates the course catalog, 
+     diagnostic test parameters, and revision queues.
+
+
+4. CORE SYSTEM MODULES & CAPABILITIES
+--------------------------------------------------------------------------------
+Module 1: Smart Interconnected Onboarding & Authentication
+* Adaptive Selection: Changing the student's class instantly updates recommended 
+  exam goals. Selecting Class 10 presents Board/Olympiad tracks; selecting College 
+  Undergraduate automatically surfaces GATE, Placements, and CAT.
+* Profile Grounding: Captures target exam, target year, daily available study hours, 
+  and academic weak spots directly into the persistent student model.
+* Privacy & Security: Built with industry-standard hashed credentials, stateless 
+  JWT tokens, and strict student-data sandboxing.
+
+Module 2: Multimodal OCR & Document Intelligence
+* Format Flexibility: Accepts camera snaps of handwritten spiral notebooks, textbook 
+  summary PDFs, and lecture slides (PDF, PNG, JPG, WEBP, TXT, MD).
+* Multimodal Extraction Pipeline: High-resolution image documents are parsed via 
+  Vision LLM engines (gpt-4o / Vision models) while text documents are processed 
+  via native text parsers and pypdf.
+* Cognitive Note Synthesis:
+  - Executive Summary: Generates a clean, structured overview aligned with the 
+    student's target exam.
+  - Key Concepts: Identifies and tags core thematic pillars.
+  - Formulas & Governing Relations: Mathematically isolates symbols, units, equations, 
+    and constraints.
+  - Instant Self-Test Drills: Automatically creates 2 to 4 diagnostic check questions 
+    drawn directly from the student's uploaded notes with instant feedback and 
+    explanations on the dashboard.
+  - Cross-Module Linkage: Instantly allows turning the notes into an adaptive daily 
+    schedule task, referencing them in Socratic tutoring, or linking them to course 
+    modules.
+
+Module 3: Dynamic AI Diagnostic Engine (Zero Hardcoding)
+* Platform Study Verification:
+  - Before generating test questions, the engine queries the student's study history 
+    (study_materials, enrolled_courses, completed study_plans tasks).
+  - If the student has studied on the platform, it offers tests on those exact 
+    concepts.
+  - If the student has not studied anything on the platform yet, it transparently 
+    prompts: "You haven't enrolled in courses or uploaded class study notes on 
+    Mentor Mate yet. What topic from your school or college classes would you like 
+    to test your knowledge on?"
+  - Students can type any custom topic from class or pick from recommended syllabus 
+    suggestion chips.
+* Pure AI LLM Question Generation:
+  - Zero static question bank reliance. The AI LLM generates 5 distinct, rigorous 
+    multiple-choice questions on the fly.
+  - Injects formulas and concepts from uploaded notes when testing a note-grounded 
+    topic.
+  - Each question includes: 4 plausible distractors, unambiguous correct index, 
+    step-by-step mathematical/conceptual derivations, 2 Socratic guiding hints, and 
+    quantitative difficulty ratings.
+* Sequential Delivery & Looping Immunity: Questions are queued sequentially 
+  (Question 1 to 5) with zero repeating or abrupt reset bugs.
+* Diagnostic Evaluation Report:
+  - Overall score and percentage with an automated performance tier (Mastery, 
+    Proficient, Developing, Critical Support).
+  - Subject-wise accuracy breakdown.
+  - Cognitive error and misconception analysis.
+  - Full Question-by-Question Review: Displays every question attempted, what the 
+    student answered (highlighted green/red), the correct answer, and the AI's 
+    step-by-step pedagogical derivation.
+  - Targeted remedial course recommendations.
+
+Module 4: Adaptive Spaced Retention Planner & Daily Scheduler
+* Ebbinghaus Memory Decay Modeling: Tracks individual concept memory strength using 
+  exponential retention half-life curves.
+* Dynamic Balancing: Factors in the student's exact countdown days to their target 
+  exam and available daily hours (e.g., 1.5h, 3h, 5h).
+* Balanced Task Queuing: Distributes time across concept acquisition, spaced 
+  repetition of decaying topics, and practice problem drills.
+* Interactive Task Tracking: Allows checking off completed tasks and tracks 7-day 
+  study consistency streaks.
+
+Module 5: 24/7 Socratic AI Academic Mentor
+* Non-Spoonfeeding Pedagogy: Rather than simply blurting out final answers (which 
+  weakens cognitive retention), the AI acts as a patient academic tutor.
+* Socratic Guiding Hints: Breaks complex problems into smaller, intuitive intermediate 
+  questions, guiding the student toward the breakthrough derivation themselves.
+* RAG & Notes Grounding: Retrieves context directly from the student's uploaded notes, 
+  syllabus benchmarks, and diagnosed weak areas.
+
+Module 6: Course Remediation Catalog
+* Automated Curation: Maps diagnosed conceptual gaps directly to remedial course 
+  modules.
+* Open University Course Integration: Seamlessly indexes high-quality, verified 
+  open-access courses from MIT OpenCourseWare (6.006, 18.06, 6.034), Harvard CS50, 
+  and NPTEL / SWAYAM (IIT Kharagpur, IIT Madras).
+* Note-to-Course Conversion: Automatically compiles student notes into interactive 
+  modular course cards with formula sheets, worked examples, and pitfalls.
+
+
+5. MATHEMATICAL & PSYCHOMETRIC FOUNDATIONS
+--------------------------------------------------------------------------------
+1. Bayesian Knowledge Tracing (BKT):
+   Tracks the latent probability P(L_t) that a student has mastered a specific 
+   concept after observation t using slip P(S), guess P(G), and transition P(T) 
+   probabilities.
+
+2. Item Response Theory (IRT) - 2PL MAP Estimation:
+   Estimates the student's latent ability (theta) independently of raw score 
+   percentages by factoring in question difficulty (b) and discrimination (a) via 
+   Maximum A Posteriori (MAP) estimation.
+
+3. Spaced Retention & Memory Half-Life:
+   Calculates exponential decay of memory retention R(t) = 2^(-t / S), scheduling 
+   timely reviews before retention dips below critical mastery thresholds.
+
+4. Cognitive Misconception Classifier:
+   Distinguishes procedural calculation slips from deep conceptual fallacies and 
+   retention degradation over time.
+
+
+6. TECHNICAL ARCHITECTURE & STACK
+--------------------------------------------------------------------------------
+* Frontend: Next.js 15 (App Router), React 19, TypeScript, Vanilla CSS for complete 
+  visual control, glassmorphic dark-mode design system.
+* Backend: FastAPI (Python 3.12 Asynchronous), Pydantic schemas, non-blocking async 
+  architecture.
+* AI Gateway Layer: AgentRouter adapter supporting OpenAI, Groq, OpenRouter, and 
+  Vision multimodal models without client-side credential exposure.
+* Data Persistence: Flexible async database collections (student_profiles, 
+  study_materials, assessment_sessions, mastery_states, retention_states).
+* Testing & QA: 100% automated pytest backend test suite covering auth, IRT/BKT 
+  modeling, dynamic assessment progression, and document OCR pipelines.
+
+
+7. CONCLUSION
+--------------------------------------------------------------------------------
+Mentor Mate proves that modern educational technology does not need to rely on 
+synthetic marketing claims, pre-baked video libraries, or rigid multiple-choice 
+banks to deliver extraordinary academic value.
+
+By uniting Multimodal OCR, Dynamic AI Question Generation, and Bayesian Cognitive 
+Modeling, Mentor Mate gives every student what education was always meant to be: 
+a truly personalized, patient, and intellectually honest mentor that meets them 
+exactly where they are.
+================================================================================

@@ -1,0 +1,370 @@
+[
+  {
+    "id": "q_alg_001",
+    "concept_id": "concept_math_linear_eq",
+    "subject": "Math",
+    "topic": "Algebra",
+    "difficulty": 0.25,
+    "type": "multiple_choice",
+    "question": "If 2x + 3 = 11, what is the value of x?",
+    "options": ["3", "4", "5", "7"],
+    "correct_index": 1,
+    "explanation": "Subtract 3 from both sides: 2x = 8. Divide by 2: x = 4.",
+    "misconception_distractors": {
+      "0": { "type": "calculation_error", "description": "Forgot to subtract 3, divided 11-5 or arithmetic slip." },
+      "2": { "type": "sign_error", "description": "Added 3 instead of subtracting: 2x = 14 => x = 7 or picked 5." },
+      "3": { "type": "inverted_operation", "description": "Added 3 to both sides giving 2x = 14, x = 7." }
+    },
+    "hints": [
+      "Isolate the variable term '2x' first by moving the constant +3 to the right side.",
+      "Subtract 3 from 11 to find 2x.",
+      "2x = 8. Divide 8 by 2 to get x = 4."
+    ],
+    "source": "CBSE Class 10 Foundation"
+  },
+  {
+    "id": "q_alg_002",
+    "concept_id": "concept_math_algebraic_identities",
+    "subject": "Math",
+    "topic": "Algebra",
+    "difficulty": 0.35,
+    "type": "multiple_choice",
+    "question": "What is the standard expansion of (a + b)^2?",
+    "options": ["a^2 + b^2", "a^2 + b^2 + 2ab", "2a + 2b", "a^2 + 2ab"],
+    "correct_index": 1,
+    "explanation": "(a + b)^2 = (a + b)(a + b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2.",
+    "misconception_distractors": {
+      "0": { "type": "freshman_dream_misconception", "description": "Universal power distribution error: assuming (a+b)^n = a^n + b^n without cross-term." },
+      "2": { "type": "procedural_weakness", "description": "Confusing exponentiation with scalar multiplication 2(a+b)." },
+      "3": { "type": "incomplete_expansion", "description": "Forgot the b^2 square term." }
+    },
+    "hints": [
+      "Remember that squaring a binomial means multiplying it by itself: (a+b)(a+b).",
+      "Use the FOIL / distributive method: First, Outer, Inner, Last terms.",
+      "The outer and inner terms both yield 'ab', resulting in the cross term 2ab."
+    ],
+    "source": "CBSE Standard Algebra"
+  },
+  {
+    "id": "q_alg_003",
+    "concept_id": "concept_math_quad_roots",
+    "subject": "Math",
+    "topic": "Algebra",
+    "difficulty": 0.45,
+    "type": "multiple_choice",
+    "question": "The roots of the equation x^2 - 9 = 0 are:",
+    "options": ["±2", "±3", "±9", "3 only"],
+    "correct_index": 1,
+    "explanation": "x^2 = 9 => x = ±√9 = ±3. Or factoring: (x-3)(x+3) = 0.",
+    "misconception_distractors": {
+      "0": { "type": "calculation_error", "description": "Arithmetic square root slip." },
+      "2": { "type": "procedural_weakness", "description": "Forgot to apply square root operator to 9." },
+      "3": { "type": "negative_root_omission", "description": "Neglected the negative root in quadratic extraction." }
+    },
+    "hints": [
+      "Rearrange the equation into x^2 = 9 or factor it as difference of two squares.",
+      "Difference of squares formula: a^2 - b^2 = (a-b)(a+b).",
+      "Here a=x and b=3, giving (x-3)(x+3)=0, which yields roots x = +3 and x = -3."
+    ],
+    "source": "CBSE / JEE Foundation"
+  },
+  {
+    "id": "q_chem_001",
+    "concept_id": "concept_chem_iupac",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": 0.3,
+    "type": "multiple_choice",
+    "question": "What is the systematic IUPAC name for CH3-CH2-OH?",
+    "options": ["Ethanol", "Methanol", "Ethane", "Dimethylether"],
+    "correct_index": 0,
+    "explanation": "The 2-carbon alkane chain is ethane. The -OH principal functional group takes suffix '-ol', giving ethanol.",
+    "misconception_distractors": {
+      "1": { "type": "carbon_count_error", "description": "Counted 1 carbon (methanol) instead of 2." },
+      "2": { "type": "functional_group_ignorance", "description": "Ignored the -OH hydroxyl functional group." },
+      "3": { "type": "isomer_confusion", "description": "Confused with functional isomer ether." }
+    },
+    "hints": [
+      "Count the total number of carbon atoms in the continuous parent chain.",
+      "Two carbons corresponds to the root word 'eth-'.",
+      "The -OH group indicates an alcohol, replacing '-e' with '-ol': ethanol."
+    ],
+    "source": "NCERT Class 10 & 11"
+  },
+  {
+    "id": "q_chem_002",
+    "concept_id": "concept_chem_aromatic",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": 0.35,
+    "type": "multiple_choice",
+    "question": "Benzene (C6H6) is classified as:",
+    "options": ["Alkane", "Alkene", "Aromatic", "Cycloalkane"],
+    "correct_index": 2,
+    "explanation": "Benzene has a planar cyclic ring with 6 delocalized pi electrons (4n+2 where n=1), making it an aromatic compound.",
+    "misconception_distractors": {
+      "0": { "type": "saturation_misconception", "description": "Confused with saturated hydrocarbons." },
+      "1": { "type": "localized_double_bond_error", "description": "Treated as simple isolated cyclohexatriene alkene." },
+      "3": { "type": "delocalization_ignorance", "description": "Missed resonance stability and Huckel's aromaticity." }
+    },
+    "hints": [
+      "Notice the ring of 6 carbons with alternating double bonds and resonance delocalization.",
+      "Check Huckel's rule: (4n + 2) pi electrons with cyclic conjugated system.",
+      "With 6 pi electrons (n=1) and planar geometry, it is the prototype aromatic compound."
+    ],
+    "source": "CBSE / JEE Core Chemistry"
+  },
+  {
+    "id": "q_chem_003",
+    "concept_id": "concept_chem_reaction_mechanisms",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": 0.55,
+    "type": "multiple_choice",
+    "question": "The SN1 nucleophilic substitution reaction typically proceeds via which intermediate?",
+    "options": ["Carbocation", "Free Radical", "Carbanion", "Concerted Transition State without intermediate"],
+    "correct_index": 0,
+    "explanation": "SN1 is a two-step unimolecular substitution where the leaving group departs first, forming a planar sp2 carbocation intermediate.",
+    "misconception_distractors": {
+      "1": { "type": "mechanism_confusion", "description": "Confused ionic substitution with radical halogenation." },
+      "2": { "type": "charge_inversion", "description": "Inverted ionic polarity to negative carbanion." },
+      "3": { "type": "sn1_sn2_confusion", "description": "Confused SN1 with SN2 concerted single-step mechanism." }
+    },
+    "hints": [
+      "SN1 has rate = k[Substrate], indicating the slow rate-determining step involves only the substrate.",
+      "The leaving group departs on its own in step 1, leaving behind a positively charged carbon.",
+      "A trivalent carbon with positive formal charge is a carbocation."
+    ],
+    "source": "JEE / NEET Organic Chemistry"
+  },
+  {
+    "id": "q_phys_001",
+    "concept_id": "concept_phys_speed_dist",
+    "subject": "Physics",
+    "topic": "Kinematics",
+    "difficulty": 0.25,
+    "type": "multiple_choice",
+    "question": "A vehicle moves with a constant speed of 60 km/h for 2 hours. What is the total distance covered?",
+    "options": ["100 km", "120 km", "140 km", "30 km"],
+    "correct_index": 1,
+    "explanation": "Distance = Speed × Time = 60 km/h × 2 h = 120 km.",
+    "misconception_distractors": {
+      "0": { "type": "calculation_error", "description": "Subtraction or rough approximation error." },
+      "2": { "type": "calculation_error", "description": "Addition error (60 + 80)." },
+      "3": { "type": "inverted_formula", "description": "Divided speed by time (60 / 2 = 30)." }
+    },
+    "hints": [
+      "Recall the fundamental kinematics formula connecting distance, speed, and time.",
+      "Distance = Speed × Time.",
+      "Multiply 60 by 2 to get 120 km."
+    ],
+    "source": "CBSE Physics Foundation"
+  },
+  {
+    "id": "q_phys_002",
+    "concept_id": "concept_phys_force_units",
+    "subject": "Physics",
+    "topic": "Dynamics",
+    "difficulty": 0.28,
+    "type": "multiple_choice",
+    "question": "What is the SI unit of Force?",
+    "options": ["Newton", "Joule", "Watt", "Pascal"],
+    "correct_index": 0,
+    "explanation": "1 Newton (N) = 1 kg·m/s^2, defined by Newton's second law F = ma.",
+    "misconception_distractors": {
+      "1": { "type": "unit_confusion", "description": "Confused Force with Work / Energy (Joule)." },
+      "2": { "type": "unit_confusion", "description": "Confused Force with Power (Watt)." },
+      "3": { "type": "unit_confusion", "description": "Confused Force with Pressure (Pascal)." }
+    },
+    "hints": [
+      "Think of Newton's second law: Force = mass × acceleration.",
+      "Mass is in kg and acceleration is in m/s^2.",
+      "kg·m/s^2 is named after the physicist Sir Isaac Newton."
+    ],
+    "source": "NCERT Class 9 & 11"
+  },
+  {
+    "id": "q_phys_003",
+    "concept_id": "concept_phys_gravitation",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": 0.32,
+    "type": "multiple_choice",
+    "question": "What is the approximate acceleration due to gravity (g) on the Earth's surface?",
+    "options": ["9.8 m/s²", "9.8 km/s²", "9.8 N", "98 m/s²"],
+    "correct_index": 0,
+    "explanation": "Standard surface gravitational acceleration is approximately 9.8 m/s².",
+    "misconception_distractors": {
+      "1": { "type": "unit_scale_error", "description": "Used km instead of meters." },
+      "2": { "type": "unit_confusion", "description": "Confused acceleration with force (Newtons)." },
+      "3": { "type": "decimal_order_error", "description": "Multiplied by factor of 10." }
+    },
+    "hints": [
+      "Recall the standard value used in kinematics and gravitation numericals.",
+      "Check the units carefully: acceleration is distance per second squared.",
+      "Standard Earth value is 9.8 m/s² (often rounded to 10 m/s² for rough estimation)."
+    ],
+    "source": "NCERT Physics"
+  },
+  {
+    "id": "q_bio_001",
+    "concept_id": "concept_bio_cardio",
+    "subject": "Biology",
+    "topic": "Human Physiology",
+    "difficulty": 0.25,
+    "type": "multiple_choice",
+    "question": "How many chambers are there in the human heart?",
+    "options": ["2", "3", "4", "5"],
+    "correct_index": 2,
+    "explanation": "The human heart consists of 4 chambers: two upper atria (left and right) and two lower ventricles (left and right).",
+    "misconception_distractors": {
+      "0": { "type": "phylogenetic_confusion", "description": "Confused with 2-chambered fish heart." },
+      "1": { "type": "phylogenetic_confusion", "description": "Confused with 3-chambered amphibian/reptile heart." },
+      "3": { "type": "anatomical_invention", "description": "Non-existent heart architecture." }
+    },
+    "hints": [
+      "Humans are warm-blooded mammals requiring complete separation of oxygenated and deoxygenated blood.",
+      "There are upper receiving chambers (atria) and lower pumping chambers (ventricles).",
+      "Two atria + two ventricles = 4 chambers."
+    ],
+    "source": "NCERT Class 10 Biology"
+  },
+  {
+    "id": "q_bio_002",
+    "concept_id": "concept_bio_cell",
+    "subject": "Biology",
+    "topic": "Cell Biology",
+    "difficulty": 0.25,
+    "type": "multiple_choice",
+    "question": "Which organelle is universally termed the 'powerhouse of the cell'?",
+    "options": ["Nucleus", "Mitochondria", "Ribosome", "Endoplasmic Reticulum"],
+    "correct_index": 1,
+    "explanation": "Mitochondria produce ATP (adenosine triphosphate) through cellular respiration, supplying cellular energy.",
+    "misconception_distractors": {
+      "0": { "type": "organelle_confusion", "description": "Confused cell powerhouse with cell control center (Nucleus)." },
+      "2": { "type": "organelle_confusion", "description": "Confused energy production with protein synthesis (Ribosome)." },
+      "3": { "type": "organelle_confusion", "description": "Confused with transport highway (ER)." }
+    },
+    "hints": [
+      "Think about where ATP (energy currency) is synthesized via the Krebs cycle and electron transport chain.",
+      "It is a double-membrane organelle with inner cristae folds.",
+      "The organelle is Mitochondria."
+    ],
+    "source": "NCERT Class 9 & 11 Biology"
+  },
+  {
+    "id": "q_bio_003",
+    "concept_id": "concept_bio_genetics",
+    "subject": "Biology",
+    "topic": "Genetics",
+    "difficulty": 0.28,
+    "type": "multiple_choice",
+    "question": "What does the abbreviation 'DNA' stand for?",
+    "options": ["Deoxyribonucleic Acid", "DiNitro Acid", "Dual Nucleic Atom", "Deoxyribose Nitrogen Acid"],
+    "correct_index": 0,
+    "explanation": "DNA stands for Deoxyribonucleic Acid, composed of deoxyribose sugar, phosphate group, and nitrogenous bases.",
+    "misconception_distractors": {
+      "1": { "type": "superficial_acronym_guess", "description": "Guessed chemical terms without biological context." },
+      "2": { "type": "superficial_acronym_guess", "description": "Invented atom terminology." },
+      "3": { "type": "component_confusion", "description": "Confused the molecular name with constituent elements." }
+    },
+    "hints": [
+      "It contains a 5-carbon sugar lacking one oxygen atom: deoxyribose.",
+      "It is located in cell nuclei and acidic in nature.",
+      "Full term: Deoxyribonucleic Acid."
+    ],
+    "source": "NCERT Biology"
+  },
+  {
+    "id": "q_apt_001",
+    "concept_id": "concept_apt_series",
+    "subject": "Aptitude",
+    "topic": "Logical Aptitude",
+    "difficulty": 0.35,
+    "type": "multiple_choice",
+    "question": "Find the odd one out in the series: 2, 4, 8, 16, 18, 32",
+    "options": ["16", "18", "8", "32"],
+    "correct_index": 1,
+    "explanation": "The pattern is doubling each previous number (powers of 2): 2, 4, 8, 16, 32, 64. 18 breaks this rule (it should be 32).",
+    "misconception_distractors": {
+      "0": { "type": "pattern_break_misidentification", "description": "Mistook 16 as an anomaly." },
+      "2": { "type": "pattern_break_misidentification", "description": "Mistook 8 as an anomaly." },
+      "3": { "type": "pattern_break_misidentification", "description": "Picked 32 without seeing 18." }
+    },
+    "hints": [
+      "Look at the ratio between consecutive numbers: 4/2 = 2, 8/4 = 2, 16/8 = 2.",
+      "Each term is obtained by multiplying the previous term by 2.",
+      "16 × 2 = 32, not 18. Therefore 18 is the odd term."
+    ],
+    "source": "Aptitude & Logical Reasoning"
+  },
+  {
+    "id": "q_apt_002",
+    "concept_id": "concept_apt_series",
+    "subject": "Aptitude",
+    "topic": "Logical Aptitude",
+    "difficulty": 0.25,
+    "type": "multiple_choice",
+    "question": "What is the next number in the series: 3, 6, 9, 12, ...?",
+    "options": ["14", "15", "18", "21"],
+    "correct_index": 1,
+    "explanation": "Arithmetic progression with common difference d = +3: 12 + 3 = 15.",
+    "misconception_distractors": {
+      "0": { "type": "arithmetic_slip", "description": "Added 2 instead of 3." },
+      "2": { "type": "multiplicative_leap", "description": "Doubled or added 6 prematurely." },
+      "3": { "type": "pattern_overshoot", "description": "Skipped a term." }
+    },
+    "hints": [
+      "Find the difference between successive terms: 6 - 3 = 3, 9 - 6 = 3, 12 - 9 = 3.",
+      "Add the common difference (3) to the last term 12.",
+      "12 + 3 = 15."
+    ],
+    "source": "Foundational Aptitude"
+  },
+  {
+    "id": "q_apt_003",
+    "concept_id": "concept_apt_analogies",
+    "subject": "Reasoning",
+    "topic": "Logical Aptitude",
+    "difficulty": 0.38,
+    "type": "multiple_choice",
+    "question": "RAIL is related to LIAR in the same way that LATE is related to:",
+    "options": ["ETAL", "TEAL", "TALE", "LEAT"],
+    "correct_index": 0,
+    "explanation": "RAIL (letters 1-2-3-4) inverted in reverse order becomes L-I-A-R (4-3-2-1). Applying reverse order to LATE gives E-T-A-L.",
+    "misconception_distractors": {
+      "1": { "type": "anagram_confusion", "description": "Chose an English word anagram without exact positional reversal." },
+      "2": { "type": "anagram_confusion", "description": "Picked an English word instead of following geometric letter inversion." },
+      "3": { "type": "partial_reversal", "description": "Swapped only middle letters." }
+    },
+    "hints": [
+      "Check letter indices: R=1, A=2, I=3, L=4.",
+      "LIAR corresponds to letters in reverse order: 4, 3, 2, 1.",
+      "Applying exact reversal to L-A-T-E (1-2-3-4) yields E-T-A-L (4-3-2-1)."
+    ],
+    "source": "Verbal Reasoning & Coding"
+  },
+  {
+    "id": "q_apt_004",
+    "concept_id": "concept_apt_geometry",
+    "subject": "Reasoning",
+    "topic": "Logical Aptitude",
+    "difficulty": 0.2,
+    "type": "multiple_choice",
+    "question": "Which shape is distinct from the others: Square, Triangle, Circle, Pentagon?",
+    "options": ["Square", "Triangle", "Circle", "Pentagon"],
+    "correct_index": 2,
+    "explanation": "Square (4 sides), Triangle (3 sides), and Pentagon (5 sides) are all straight-line polygons. A circle is a smooth curve with zero vertices or straight edges.",
+    "misconception_distractors": {
+      "0": { "type": "parity_misconception", "description": "Thought of even vs odd vertices." },
+      "1": { "type": "vertex_misconception", "description": "Chose triangle because 3 is odd." },
+      "3": { "type": "vertex_misconception", "description": "Chose pentagon due to higher sides." }
+    },
+    "hints": [
+      "Observe the boundaries and edges composing each figure.",
+      "Are the edges made of straight line segments (polygons) or a continuous curve?",
+      "Square, Triangle, and Pentagon are polygons; Circle is curved with no vertices."
+    ],
+    "source": "Non-Verbal Reasoning"
+  }
+]

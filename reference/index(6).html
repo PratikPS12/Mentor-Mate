@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mentor Mate — Final Demo</title>
+
+<!-- Chart.js CDN for graphs -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+:root{
+  --bg:#071028; --card:#0f172a; --muted:#94a3b8; --text:#e6eef8;
+  --brand:#6366f1; --accent:#22d3ee; --ok:#10b981; --warn:#f59e0b; --danger:#ef4444;
+  --shadow:0 10px 30px rgba(0,0,0,.35); --radius:16px;
+}
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial; color:var(--text); background:
+  radial-gradient(900px 600px at 10% -10%, rgba(99,102,241,.09), transparent 60%),
+  radial-gradient(800px 550px at 110% 10%, rgba(34,211,238,.06), transparent 50%),
+  var(--bg);
+}
+.container{max-width:1100px;margin:18px auto;padding:16px}
+.glass{background:rgba(14,20,33,.68); border:1px solid rgba(148,163,184,.07); backdrop-filter: blur(8px); box-shadow:var(--shadow); border-radius:var(--radius)}
+.header{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px}
+.title{font-size:20px; font-weight:800}
+.subtitle{color:var(--muted); font-size:13px}
+.pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:rgba(99,102,241,.08); border:1px solid rgba(99,102,241,.12); font-weight:700}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; padding:10px}
+.tab{padding:8px 12px; border-radius:10px; background:#071525; border:1px solid rgba(148,163,184,.06); color:var(--muted); cursor:pointer; font-weight:700}
+.tab.active{background:linear-gradient(135deg, rgba(99,102,241,.12), rgba(34,211,238,.06)); color:var(--text)}
+.layout{display:grid; gap:12px; grid-template-columns:1fr}
+.row{display:grid; gap:12px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:920px){ .grid-3,.grid-2{grid-template-columns:1fr} }
+
+.card{padding:14px; border-radius:12px; background:var(--card); border:1px solid rgba(148,163,184,.03)}
+.btn{cursor:pointer; border:none; border-radius:10px; padding:8px 12px; font-weight:700; color:white; background:linear-gradient(135deg,var(--brand),var(--accent))}
+.btn.secondary{background:#1f2937}
+.btn.small{padding:6px 8px; font-size:13px}
+.input, select, textarea{width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(148,163,184,.06); background:#061022; color:var(--text)}
+label{font-size:13px; color:var(--muted); display:block; margin-bottom:6px}
+.list{list-style:none; padding:0; margin:0}
+.list li{padding:8px 10px; border-radius:8px; background:#06111b; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center}
+.progress{height:8px;background:#06111b;border-radius:999px;overflow:hidden;border:1px solid rgba(148,163,184,.06)}
+.progress>div{height:100%; background:linear-gradient(90deg,var(--brand),var(--accent)); width:0%}
+.note{font-size:12px; color:var(--muted)}
+.hr{height:1px;background:rgba(148,163,184,.04); margin:10px 0;border-radius:4px}
+.hidden{display:none}
+.right{display:flex; gap:8px; justify-content:flex-end; align-items:center}
+.badge{font-size:12px; padding:6px 8px; border-radius:999px; border:1px solid rgba(148,163,184,.05); color:var(--muted)}
+.panel{margin-top:12px}
+.small{font-size:12px}
+textarea.input{min-height:80px; resize:vertical}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Login -->
+  <div id="login" class="glass panel" style="max-width:720px;margin:auto;padding:18px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span class="pill">Mentor Mate • Demo</span>
+      <div style="flex:1">
+        <div class="title">Welcome — demo ready</div>
+        <div class="subtitle">Sign in with sample data or enter details</div>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div style="display:grid; gap:10px;">
+      <div>
+        <label>Name</label>
+        <input id="name" class="input" placeholder="e.g. Aditya Sharma">
+      </div>
+
+      <div style="display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr))">
+        <div>
+          <label>Class / Grade</label>
+          <select id="klass" class="input">
+            <option value="">Select</option>
+            <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>Degree</option>
+          </select>
+        </div>
+        <div>
+          <label>Goal / Board</label>
+          <select id="goal" class="input">
+            <option value="Undecided">Undecided</option>
+            <option>JEE</option><option>NEET</option><option>CUET</option>
+            <option>CBSE</option><option>ICSE</option><option>State Board</option><option>CET</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label>Parent / Student Email</label>
+        <input id="email" class="input" placeholder="name@example.com">
+      </div>
+
+      <div style="display:flex; gap:8px; justify-content:flex-end">
+        <button class="btn secondary" onclick="quickFill()">Try sample</button>
+        <button class="btn" onclick="login()">Continue →</button>
+      </div>
+      <div class="note">Demo only — all data saved locally in your browser.</div>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div id="app" class="hidden">
+
+    <!-- Header -->
+    <div class="glass header">
+      <div>
+        <div id="greet" class="title">Hi, Student 👋</div>
+        <div id="subg" class="subtitle">Your study dashboard</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px">
+        <span class="badge" id="badgeClass">Class —</span>
+        <span class="badge" id="badgeGoal">Goal —</span>
+        <button class="btn small" onclick="openTab('schedule')">Start Study ▶</button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="glass panel" style="padding:10px">
+      <div class="tabs" id="tabs">
+        <div class="tab active" id="tab-dashboard" onclick="openTab('dashboard')">🏠 Dashboard</div>
+        <div class="tab" id="tab-profile" onclick="openTab('profile')">🧑‍💼 Profile</div>
+        <div class="tab" id="tab-uploads" onclick="openTab('uploads')">📄 Marksheet</div>
+        <div class="tab" id="tab-guidance" onclick="openTab('guidance')">🎯 Guidance</div>
+        <div class="tab" id="tab-schedule" onclick="openTab('schedule')">📅 Schedule</div>
+        <div class="tab" id="tab-test" onclick="openTab('test')">📝 Test</div>
+        <div class="tab" id="tab-courses" onclick="openTab('courses')">📚 Courses</div>
+        <div class="tab" id="tab-performance" onclick="openTab('performance')">📊 Performance</div>
+        <div class="tab" id="tab-mentor" onclick="openTab('mentor')">💬 Ask Mentor</div>
+        <div class="tab" id="tab-about" onclick="openTab('about')">ℹ About Us</div>
+        <div class="tab" id="tab-settings" onclick="openTab('settings')">⚙ Settings</div>
+      </div>
+    </div>
+
+    <!-- Panels -->
+    <div id="panels" class="panel">
+
+      <!-- Dashboard -->
+      <div id="panel-dashboard" class="card grid-2">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-weight:800">Streak</div>
+              <div class="subtitle">Days studied this week</div>
+            </div>
+            <div class="pill" id="streakPill">0 🔥</div>
+          </div>
+          <div class="hr"></div>
+          <div class="progress"><div id="streakBar" style="width:0%"></div></div>
+          <div class="right" style="margin-top:8px">
+            <button class="btn small" onclick="markStudiedToday()">Mark Today Studied</button>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-weight:800">Quick Actions</div>
+            <div class="small note">Customize in Settings</div>
+          </div>
+          <div class="hr"></div>
+          <ul class="list" id="quickActionsList"></ul>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div id="panel-profile" class="card hidden">
+        <div class="grid-3 row">
+          <div>
+            <label>Full Name</label>
+            <input id="pName" class="input">
+          </div>
+          <div>
+            <label>Age</label>
+            <input id="pAge" type="number" min="5" max="25" class="input">
+          </div>
+          <div>
+            <label>Class/Grade</label>
+            <select id="pClass" class="input">
+              <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>Degree</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Board / Goal</label>
+            <select id="pGoal" class="input">
+              <option>JEE</option><option>NEET</option><option>CUET</option><option>CBSE</option><option>ICSE</option><option>State Board</option><option>CET</option>
+            </select>
+          </div>
+
+          <div>
+            <label>School / Institute / University</label>
+            <input id="pSchool" class="input" placeholder="Enter institution name">
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input id="pEmail" class="input">
+          </div>
+
+          <div style="grid-column:1/-1; display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr))">
+            <div>
+              <label>Weak Area (e.g. Algebra / Organic Chem)</label>
+              <input id="pWeak" class="input">
+            </div>
+            <div>
+              <label>Add Course (if any)</label>
+              <input id="pCourseNote" class="input" placeholder="Name of enrolled course (if any)">
+            </div>
+          </div>
+        </div>
+        <div class="right" style="margin-top:10px">
+          <button class="btn" onclick="saveProfile()">Save Profile</button>
+        </div>
+      </div>
+
+      <!-- Uploads -->
+      <div id="panel-uploads" class="card hidden">
+        <div class="row">
+          <div>
+            <label>Upload Marksheet (PDF / JPG / PNG)</label>
+            <input id="fileInput" type="file" accept=".pdf,.jpg,.jpeg,.png" class="input">
+          </div>
+          <div class="note">Demo only — file stored in browser (not uploaded).</div>
+          <div class="right">
+            <button class="btn" onclick="mockScan()">Analyze (Demo)</button>
+          </div>
+
+          <ul id="marksList" class="list"></ul>
+        </div>
+      </div>
+
+      <!-- Guidance -->
+      <div id="panel-guidance" class="card hidden">
+        <div class="grid-3 row">
+          <div>
+            <label>Target Exam</label>
+            <select id="gExam" class="input">
+              <option>JEE</option><option>NEET</option><option>CUET</option><option>CBSE</option><option>ICSE</option><option>State Board</option><option>CET</option>
+            </select>
+          </div>
+          <div>
+            <label>Study Hours / Day</label>
+            <input id="gHours" type="number" min="1" max="12" value="3" class="input">
+          </div>
+          <div>
+            <label>Weak Areas</label>
+            <input id="gWeak" class="input" placeholder="Algebra, Organic Chem, etc.">
+          </div>
+        </div>
+
+        <div class="right" style="margin-top:8px"><button class="btn" onclick="generateGuidance()">Get Guidance</button></div>
+        <ul id="guidanceList" class="list" style="margin-top:10px"></ul>
+      </div>
+
+      <!-- Schedule -->
+      <div id="panel-schedule" class="card hidden">
+        <div class="grid-3 row">
+          <div><label>Days until exam</label><input id="sDays" type="number" min="7" value="180" class="input"></div>
+          <div><label>Daily hours</label><input id="sHours" type="number" min="1" max="12" value="3" class="input"></div>
+          <div><label>Subjects (comma separated)</label><input id="sSubs" class="input" placeholder="Math, Physics, Chemistry"></div>
+        </div>
+        <div class="right" style="margin-top:8px"><button class="btn" onclick="generatePlan()">Generate Today Plan</button></div>
+        <ul id="planList" class="list" style="margin-top:10px"></ul>
+      </div>
+
+      <!-- Test -->
+      <div id="panel-test" class="card hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-weight:800">Weekly Test</div>
+            <div class="subtitle">Targeted quiz (weak area) + Aptitude & Logical Reasoning</div>
+          </div>
+          <div class="right">
+            <button class="btn small secondary" onclick="checkMedia()">Camera/Mic Demo</button>
+          </div>
+        </div>
+
+        <video id="testVideo" autoplay playsinline muted class="hidden" style="width:220px;margin-top:8px;border-radius:8px;border:1px solid rgba(148,163,184,.05)"></video>
+
+        <div class="hr"></div>
+        <div class="pill small" id="quizLabel">Targeted Quiz</div>
+        <div id="quiz" style="margin-top:8px"></div>
+
+        <div class="hr" style="margin-top:8px"></div>
+        <div class="pill small">Aptitude & Logical Reasoning</div>
+        <div id="aptQuiz" style="margin-top:8px"></div>
+
+        <div class="right" style="margin-top:8px"><button class="btn" onclick="gradeAll()">Submit All</button></div>
+        <div id="quizResult" class="pill small hidden" style="margin-top:8px"></div>
+        <div class="note" style="margin-top:8px">Note: If you leave this tab, test auto-submits (demo).</div>
+      </div>
+
+      <!-- Courses -->
+      <div id="panel-courses" class="card hidden">
+        <div class="grid-3 row">
+          <div>
+            <label>Board / Track</label>
+            <select id="courseFilter" class="input" onchange="renderCourses()">
+              <option>CBSE</option><option>ICSE</option><option>State Board</option><option>CET</option>
+            </select>
+          </div>
+          <div>
+            <label>Personalize by Goal</label>
+            <select id="courseGoal" class="input" onchange="renderCourses()">
+              <option>JEE</option><option>NEET</option><option>CUET</option><option>CBSE</option><option>ICSE</option><option>State Board</option><option>CET</option>
+            </select>
+          </div>
+          <div>
+            <label>Weak Area focus</label>
+            <input id="courseWeak" class="input" placeholder="e.g. Algebra / Organic Chem" oninput="renderCourses()">
+          </div>
+        </div>
+
+        <div id="courseGrid" class="grid-3 row" style="margin-top:10px"></div>
+
+        <div class="hr"></div>
+        <div>
+          <div style="font-weight:800">Personalized Recommendations (based on Standard + Goal + Weak Area)</div>
+          <ul id="recommendedList" class="list" style="margin-top:8px"></ul>
+        </div>
+      </div>
+
+      <!-- Performance -->
+      <div id="panel-performance" class="card hidden">
+        <div class="grid-3 row">
+          <div class="card">
+            <div style="font-weight:800;margin-bottom:6px">Weekly</div>
+            <canvas id="chartWeek" width="320" height="160"></canvas>
+          </div>
+          <div class="card">
+            <div style="font-weight:800;margin-bottom:6px">Monthly</div>
+            <canvas id="chartMonth" width="320" height="160"></canvas>
+          </div>
+          <div class="card">
+            <div style="font-weight:800;margin-bottom:6px">Yearly</div>
+            <canvas id="chartYear" width="320" height="160"></canvas>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+        <div class="card">
+          <div style="font-weight:800;margin-bottom:6px">Daily Attendance (Parents view)</div>
+          <div id="attendanceList" class="list" style="max-height:200px; overflow:auto"></div>
+          <div class="note" style="margin-top:8px">Parents can verify student activity; "Mark Today Studied" on Dashboard records a day.</div>
+        </div>
+      </div>
+
+      <!-- Mentor -->
+      <div id="panel-mentor" class="card hidden">
+        <div style="display:grid; gap:10px">
+          <div>
+            <label>Ask Mentor</label>
+            <textarea id="mInput" class="input" placeholder="e.g. How can I improve in Algebra?"></textarea>
+          </div>
+          <div class="right">
+            <button class="btn" onclick="mentorReply()">Send</button>
+          </div>
+          <ul id="mentorList" class="list"></ul>
+        </div>
+      </div>
+
+      <!-- About Us -->
+      <div id="panel-about" class="card hidden">
+        <div class="title">About Mentor Mate — Demo</div>
+        <div class="subtitle">Clear expectations & offerings</div>
+        <div class="hr"></div>
+
+        <div class="grid-3 row">
+          <div>
+            <div style="font-weight:800">From Students</div>
+            <ul class="list">
+              <li>Attend daily study slots (45–90 min recommended).</li>
+              <li>Attempt weekly tests & review mistakes honestly.</li>
+              <li>Keep weak areas & profile updated for better guidance.</li>
+              <li>Uploading marksheet within 3 months is optional for demo.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div style="font-weight:800">From Parents</div>
+            <ul class="list">
+              <li>Encourage regular study and review performance weekly.</li>
+              <li>Use Attendance & Performance graphs to track progress.</li>
+              <li>Provide honest feedback — focus on long-term improvement.</li>
+            </ul>
+          </div>
+
+          <div>
+            <div style="font-weight:800">What We Provide</div>
+            <ul class="list">
+              <li>Personalized study plans based on goal & weak areas.</li>
+              <li>Targeted quizzes + Aptitude & Reasoning practice.</li>
+              <li>Course recommendations tailored to standard & goal.</li>
+              <li>Parent-friendly attendance & performance view.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="hr"></div>
+        <div class="note">Demo only — all data stored locally. No backend.</div>
+      </div>
+
+      <!-- Settings -->
+      <div id="panel-settings" class="card hidden">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px">
+          <div>
+            <label style="font-weight:700">Dark Mode</label>
+            <div class="note">Toggle demo dark mode (visual)</div>
+          </div>
+          <div class="right">
+            <label class="small"><input type="checkbox" id="darkMode" onchange="toggleVisualDark()"> Visual Dark</label>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div style="font-weight:800">Quick Actions — choose which appear on Dashboard</div>
+        <div id="qaOptions" style="margin-top:8px" class="row"></div>
+
+        <div class="hr"></div>
+        <div style="display:flex; gap:8px; justify-content:flex-end">
+          <button class="btn" onclick="saveSettings()">Save Settings</button>
+          <button class="btn secondary" onclick="clearDemo()">Clear Demo Data</button>
+        </div>
+
+        <div class="note" style="margin-top:10px">Clear Demo Data will reset all demo entries and reload the app to a fresh state.</div>
+      </div>
+
+    </div> <!-- /panels -->
+
+  </div> <!-- /app -->
+
+</div> <!-- /container -->
+
+<script>
+/* Mentor Mate — Final Demo JS
+   Keys in localStorage: mm_user, mm_profile, mm_settings, mm_attendance, mm_perf, mm_marks, mm_enrolled
+*/
+
+const $ = id => document.getElementById(id);
+const tabs = ['dashboard','profile','uploads','guidance','schedule','test','courses','performance','mentor','about','settings'];
+
+/* Demo content */
+const defaultUpcoming = [
+  {id:'up1', text:'Mock Test • Sat 5 PM'},
+  {id:'up2', text:'Revise Algebra • Tue'},
+  {id:'up3', text:'Chemistry Numericals • Thu'}
+];
+
+let quickActionsMaster = [
+  {id:'upload', text:'Upload Marksheet', fn:()=>openTab('uploads')},
+  {id:'plan', text:'Generate Today Plan', fn:()=>{ openTab('schedule'); generatePlan(); }},
+  {id:'test', text:'Start Weekly Test', fn:()=>openTab('test')},
+  {id:'mark', text:'Mark Today Studied', fn:()=>markStudiedToday()}
+];
+defaultUpcoming.forEach(u=> quickActionsMaster.push({id:u.id, text:'Upcoming: '+u.text, fn:()=>alert(u.text)}));
+
+const courseCatalog = [
+  {track:'CBSE', title:'CBSE Maths Foundation', tag:'Math', hours:6, minClass:6},
+  {track:'CBSE', title:'CBSE Science Booster', tag:'Science', hours:8, minClass:6},
+  {track:'ICSE', title:'ICSE Physics Numericals', tag:'Physics', hours:6, minClass:9},
+  {track:'State Board', title:'State Board Chemistry Core', tag:'Chemistry', hours:7, minClass:9},
+  {track:'CET', title:'CET Math Drills', tag:'Math', hours:5, minClass:11},
+  {track:'JEE', title:'JEE Physics Drills', tag:'Physics', hours:10, minClass:11},
+  {track:'NEET', title:'NEET Biology Crash', tag:'Biology', hours:10, minClass:11},
+  {track:'All', title:'Aptitude & LR Practice', tag:'Aptitude', hours:5, minClass:6}
+];
+
+const QB = {
+  Algebra:[
+    {q:"If 2x+3=11, x=?", a:["3","4","5"], c:1},
+    {q:"(a+b)^2 = ?", a:["a^2+b^2","a^2+b^2+2ab","2ab"], c:1},
+    {q:"Roots of x^2-9=0 are ±?", a:["2","3","9"], c:1}
+  ],
+  "Organic Chem":[
+    {q:"IUPAC name of CH3-CH2-OH?", a:["Ethanol","Methanol","Ethane"], c:0},
+    {q:"Benzene is:", a:["Alkane","Alkene","Aromatic"], c:2},
+    {q:"SN1 proceeds via:", a:["Carbocation","Radical","Carbanion"], c:0}
+  ],
+  Physics:[
+    {q:"Speed 60 km/h for 2 h → distance?", a:["100 km","120 km","140 km"], c:1},
+    {q:"Unit of Force:", a:["Newton","Joule","Watt"], c:0},
+    {q:"g ≈ ?", a:["9.8 m/s²","9.8 km/s²","9.8 N"], c:0}
+  ],
+  Biology:[
+    {q:"Human heart chambers:", a:["2","3","4"], c:2},
+    {q:"Cell powerhouse:", a:["Nucleus","Mitochondria","Ribosome"], c:1},
+    {q:"DNA stands for:", a:["Deoxyribo Nucleic Acid","DiNitro Acid","None"], c:0}
+  ],
+  Aptitude:[
+    {q:"Odd one out: 2,4,8,16,18", a:["16","18","8"], c:1},
+    {q:"Next in series: 3,6,9,12,?", a:["14","15","18"], c:1},
+    {q:"If ALL=3 then BOOK=?", a:["4","6","8"], c:0}
+  ],
+  Reasoning:[
+    {q:"RAIL : LIAR :: LATE : ?", a:["TALE","TEAL","TAEL"], c:0},
+    {q:"Clock: 3:00 angle between hands?", a:["90°","60°","45°"], c:0},
+    {q:"Which is different? Square, Triangle, Circle", a:["Square","Triangle","Circle"], c:2}
+  ]
+};
+
+/* Helpers */
+function todayKey(){ return new Date().toISOString().slice(0,10); }
+function getSettings(){ return JSON.parse(localStorage.getItem('mm_settings')||'{}'); }
+function getProfile(){ return JSON.parse(localStorage.getItem('mm_profile')||'{}'); }
+function getUser(){ return JSON.parse(localStorage.getItem('mm_user')||'{}'); }
+
+/* Auth & Hydrate */
+function quickFill(){
+  $('name').value='Aditya Sharma'; $('klass').value='10'; $('goal').value='JEE'; $('email').value='aditya@example.com';
+}
+function login(){
+  const u = { name: $('name').value.trim() || 'Student', klass: $('klass').value || '10', goal: $('goal').value || 'CBSE', email: $('email').value.trim() || '' };
+  localStorage.setItem('mm_user', JSON.stringify(u));
+  if(!localStorage.getItem('mm_settings')) localStorage.setItem('mm_settings', JSON.stringify({darkMode:true, quickActions: quickActionsMaster.map(q=>q.id)}));
+  $('login').classList.add('hidden'); $('app').classList.remove('hidden'); hydrate();
+}
+
+/* Hydrate UI */
+let targetedQ=[], aptQ=[], quizActive=false;
+function hydrate(){
+  const user = getUser();
+  $('greet').textContent = `Hi, ${user.name||'Student'} 👋`;
+  $('badgeClass').textContent = `Class ${user.klass||'—'}`;
+  $('badgeGoal').textContent = `Goal: ${user.goal||'—'}`;
+
+  $('pName').value = user.name || '';
+  $('pClass').value = user.klass || '10';
+  $('pEmail').value = user.email || '';
+  $('pGoal').value = user.goal || 'CBSE';
+
+  const prof = getProfile();
+  $('pAge').value = prof.age || '';
+  $('pSchool').value = prof.school || '';
+  $('pCourseNote').value = prof.courseNote || '';
+  $('pWeak').value = prof.weak || '';
+
+  renderQuickActions();
+  loadQASettingsUI();
+
+  $('courseFilter').value = user.goal && ['CBSE','ICSE','State Board','CET'].includes(user.goal) ? user.goal : 'CBSE';
+  $('courseGoal').value = user.goal || 'CBSE';
+  $('courseWeak').value = prof.weak || '';
+  renderCourses();
+
+  seedQuizzes();
+  renderAttendance();
+  drawAllCharts();
+
+  const s = getSettings();
+  if(s.darkMode===false){ applyVisualDark(false); $('darkMode').checked=false; } else { applyVisualDark(true); $('darkMode').checked=true; }
+}
+
+/* Tabs */
+function openTab(key){
+  if(quizActive && key !== 'test'){ gradeAll(true); }
+  tabs.forEach(t=>{
+    const tabBtn = $('tab-'+t);
+    const panel = $('panel-'+t);
+    if(!tabBtn || !panel) return;
+    if(t===key){ tabBtn.classList.add('active'); panel.classList.remove('hidden'); }
+    else { tabBtn.classList.remove('active'); panel.classList.add('hidden'); }
+  });
+  // run specific actions
+  if(key==='test'){ seedQuizzes(); }
+  if(key==='performance'){ renderAttendance(); drawAllCharts(); }
+  if(key==='courses'){ renderCourses(); renderRecommendations(); }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* Attendance & Streak */
+function loadAttendanceThisWeek(){
+  const log = JSON.parse(localStorage.getItem('mm_attendance')||'{}');
+  const d=new Date(); const day=d.getDay(); const start=new Date(d); start.setDate(d.getDate()-day);
+  let count=0;
+  for(let i=0;i<7;i++){
+    const cur=new Date(start); cur.setDate(start.getDate()+i);
+    const key=cur.toISOString().slice(0,10);
+    if(log[key]) count++;
+  }
+  return count;
+}
+function setStreak(days){
+  days=Math.max(0,Math.min(7,days));
+  $('streakPill').textContent = `${days} 🔥`;
+  $('streakBar').style.width = `${(days/7)*100}%`;
+}
+function markStudiedToday(){
+  const log = JSON.parse(localStorage.getItem('mm_attendance')||'{}');
+  log[todayKey()] = true;
+  localStorage.setItem('mm_attendance', JSON.stringify(log));
+  setStreak(loadAttendanceThisWeek());
+  renderAttendance();
+  alert('Marked studied for today ✅');
+}
+
+/* Quick Actions */
+function renderQuickActions(){
+  const settings = getSettings();
+  const enabled = (settings.quickActions && settings.quickActions.length) ? settings.quickActions : quickActionsMaster.map(q=>q.id);
+  $('quickActionsList').innerHTML = quickActionsMaster
+    .filter(q=>enabled.includes(q.id))
+    .map(q=>`<li><span>${q.text}</span><button class="btn small" onclick="(function(){ (${q.fn.toString()})(); })()">Go</button></li>`).join('');
+}
+function loadQASettingsUI(){
+  const settings = getSettings();
+  const enabled = (settings.quickActions && settings.quickActions.length) ? settings.quickActions : quickActionsMaster.map(q=>q.id);
+  $('qaOptions').innerHTML = quickActionsMaster.map(q=>{
+    const checked = enabled.includes(q.id) ? 'checked' : '';
+    return `<label class="small"><input type="checkbox" id="qa-${q.id}" ${checked}/> ${q.text}</label>`;
+  }).join('');
+}
+function saveSettings(){
+  const selected = quickActionsMaster.filter(q=>{ const el = $('qa-'+q.id); return el && el.checked; }).map(q=>q.id);
+  const s = getSettings(); s.quickActions = selected; s.darkMode = $('darkMode').checked; localStorage.setItem('mm_settings', JSON.stringify(s));
+  renderQuickActions(); applyVisualDark(s.darkMode);
+  alert('Settings saved ✅');
+}
+
+/* Profile */
+function saveProfile(){
+  const user = getUser();
+  user.name = $('pName').value.trim() || user.name || 'Student';
+  user.klass = $('pClass').value || user.klass;
+  user.goal = $('pGoal').value || user.goal;
+  user.email = $('pEmail').value || user.email;
+  localStorage.setItem('mm_user', JSON.stringify(user));
+
+  const profile = { age: $('pAge').value || '', school: $('pSchool').value.trim() || '', courseNote: $('pCourseNote').value.trim() || '', weak: $('pWeak').value.trim() || '' };
+  localStorage.setItem('mm_profile', JSON.stringify(profile));
+  hydrate();
+  alert('Profile saved ✅');
+}
+
+/* Uploads */
+function mockScan(){
+  const f = $('fileInput').files[0];
+  if(!f){ alert('Select a file first'); return; }
+  const marks = [{sub:'Math',score:86},{sub:'Physics',score:78},{sub:'Chemistry',score:72}];
+  localStorage.setItem('mm_marks', JSON.stringify(marks));
+  $('marksList').innerHTML = marks.map(m=>`<li><span>${m.sub}: ${m.score}%</span></li>`).join('');
+  alert('Marks analyzed (demo) ✅');
+}
+
+/* Guidance */
+function generateGuidance(){
+  const exam = $('gExam').value; const hrs = +$('gHours').value || 3; const weak = $('gWeak').value.trim();
+  const tips = [`Study plan: ${hrs}h/day — 45m study + 10m break cycles.`, 'Weekly: 1 full mock & 2 analysis sessions.'];
+  if(weak) tips.push(`Focus extra on: ${weak}`);
+  if(exam==='JEE') tips.push('JEE split: Math 40% • Physics 30% • Chem 30%');
+  if(exam==='NEET') tips.push('NEET split: Bio 50% • Chem 25% • Phys 25%');
+  if(['CBSE','ICSE','State Board'].includes(exam)) tips.push('Boards: NCERT/core text first, then PYQs.');
+  $('guidanceList').innerHTML = tips.map(t=>`<li>${t}</li>`).join('');
+}
+
+/* Schedule */
+function generatePlan(){
+  const days = +($('sDays').value || 180), hrs = +($('sHours').value || 3), subs = ($('sSubs').value || 'Math, Physics, Chemistry').split(',').map(s=>s.trim());
+  const plan = ['Warm-up: 10m flashcards / recap', `Core: ${subs[0]||'Math'} • ${Math.max(1,Math.ceil(hrs*0.5))}h`, `Second: ${subs[1]||'Physics'} • ${Math.max(1,Math.floor(hrs*0.3))}h`, 'Practice: PYQs • 8 questions', `Revision & Notes • ${Math.max(0.5, +(hrs*0.2).toFixed(1))}h`, `${days} days left — stay consistent`];
+  $('planList').innerHTML = plan.map(p=>`<li>${p}</li>`).join('');
+  openTab('schedule');
+}
+
+/* Courses */
+function renderCourses(){
+  const track = $('courseFilter').value; const pGoal = $('courseGoal').value; const weak = ($('courseWeak').value||'').toLowerCase();
+  const picks = courseCatalog.filter(c=>{
+    const matchesTrack = (c.track===track) || (c.track===pGoal) || (c.track==='All');
+    const matchesWeak = weak ? (c.tag.toLowerCase().includes(weak) || c.title.toLowerCase().includes(weak)) : true;
+    return matchesTrack && matchesWeak;
+  });
+  const show = (picks.length ? picks : courseCatalog.filter(c=>c.track===track || c.track==='All')).slice(0,12);
+  $('courseGrid').innerHTML = show.map(c=>`<div class="card"><div style="font-weight:800">${c.title}</div><div class="subtitle">${c.tag} • ~${c.hours} hrs</div><div class="right" style="margin-top:8px"><button class="btn small" onclick="enroll('${escapeHtml(c.title)}')">Enroll</button></div></div>`).join('');
+  renderRecommendations();
+}
+function enroll(title){
+  const arr = JSON.parse(localStorage.getItem('mm_enrolled')||'[]'); arr.push(title); localStorage.setItem('mm_enrolled', JSON.stringify(arr));
+  alert(`Enrolled (demo): ${title}`);
+}
+function escapeHtml(s){ return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+
+/* Recommendations (smart by class/goal/weak) */
+function recommendForProfile(){
+  const user = getUser(); const prof = getProfile();
+  const cls = (user.klass || $('pClass').value || '10')*1;
+  const goal = (user.goal || 'CBSE') + ''; const weak = (prof.weak || '').toLowerCase();
+  const suggestions = [];
+  if(cls <= 8){
+    suggestions.push({title:'Foundation: Basic Math & Science', reason:'Class 6–8 foundation'});
+    suggestions.push({title:'Olympiad Starter (Math/Science)', reason:'Early problem solving'});
+  } else if(cls <= 10){
+    suggestions.push({title:'Board Mastery (Class 10)', reason:'Board/NTSE prep'});
+    if(goal.toLowerCase().includes('jee')) suggestions.push({title:'Foundation for PCM', reason:'Future JEE basics'});
+  } else {
+    if(goal.toLowerCase().includes('jee')) suggestions.push({title:'JEE Physics & Math Drills', reason:'Goal: JEE'});
+    if(goal.toLowerCase().includes('neet')) suggestions.push({title:'NEET Biology Booster', reason:'Goal: NEET'});
+    if(goal.toLowerCase().includes('cet')) suggestions.push({title:'CET Speed & Accuracy', reason:'Goal: CET'});
+  }
+  if(weak.includes('algebra')) suggestions.unshift({title:'Algebra Mastery Sprint', reason:'Weak: Algebra'});
+  if(weak.includes('organic')) suggestions.unshift({title:'Organic Chemistry Rapid Review', reason:'Weak: Organic Chem'});
+  if(weak.includes('physics')) suggestions.unshift({title:'Physics Numericals Drills', reason:'Weak: Physics'});
+  if(weak.includes('bio')||weak.includes('biology')) suggestions.unshift({title:'Biology Concepts + PYQs', reason:'Weak: Biology'});
+  const uniq=[]; const seen=new Set();
+  for(const s of suggestions){ if(!seen.has(s.title)){ uniq.push(s); seen.add(s.title); } if(uniq.length>=6) break; }
+  return uniq;
+}
+function renderRecommendations(){
+  const list = recommendForProfile();
+  $('recommendedList').innerHTML = list.length ? list.map(r=>`<li><div><strong>${r.title}</strong><div class="small note">${r.reason}</div></div><div class="right"><button class="btn small" onclick="enroll('${escapeHtml(r.title)}')">Enroll</button></div></li>`).join('') : '<li class="small">No personalized recommendations yet.</li>';
+}
+
+/* Quizzes */
+function pickTargetedQB(){
+  const prof = getProfile(); const weak=(prof.weak||'').toLowerCase();
+  if(weak.includes('algebra')) return 'Algebra'; if(weak.includes('organic')) return 'Organic Chem'; if(weak.includes('physics')) return 'Physics'; if(weak.includes('bio')||weak.includes('biology')) return 'Biology';
+  const goal = (getUser().goal||'').toLowerCase();
+  if(goal.includes('neet')) return 'Biology'; if(goal.includes('jee')||goal.includes('cet')) return 'Physics';
+  return 'Algebra';
+}
+function seedQuizzes(){
+  const bank = pickTargetedQB();
+  targetedQ = QB[bank] && QB[bank].length ? QB[bank] : QB.Algebra;
+  aptQ = [...QB.Aptitude, ...QB.Reasoning];
+  $('quizLabel').textContent = `Targeted Quiz — ${bank}`;
+  $('quiz').innerHTML = targetedQ.map((o,i)=>`<div class="card" style="margin-bottom:8px"><div><strong>${i+1}.</strong> ${o.q}</div>${o.a.map((opt,j)=>`<label style="display:block;margin-top:6px"><input type="radio" name="tq${i}" value="${j}"> ${opt}</label>`).join('')}</div>`).join('');
+  $('aptQuiz').innerHTML = aptQ.map((o,i)=>`<div class="card" style="margin-bottom:8px"><div><strong>${i+1}.</strong> ${o.q}</div>${o.a.map((opt,j)=>`<label style="display:block;margin-top:6px"><input type="radio" name="aq${i}" value="${j}"> ${opt}</label>`).join('')}</div>`).join('');
+  quizActive = true;
+}
+function gradeAll(auto=false){
+  let scoreT=0, scoreA=0;
+  targetedQ.forEach((q,i)=>{ const sel=document.querySelector(`input[name="tq${i}"]:checked`); if(sel && +sel.value===q.c) scoreT++; });
+  aptQ.forEach((q,i)=>{ const sel=document.querySelector(`input[name="aq${i}"]:checked`); if(sel && +sel.value===q.c) scoreA++; });
+  const total = targetedQ.length + aptQ.length; const score = scoreT + scoreA; const pct = Math.round((score/total)*100);
+  $('quizResult').textContent = `Score: ${score}/${total} (${pct}%) • Targeted ${scoreT}/${targetedQ.length} • Apt ${scoreA}/${aptQ.length}`; $('quizResult').classList.remove('hidden');
+  const perf = JSON.parse(localStorage.getItem('mm_perf')||'[]'); perf.push({date: todayKey(), pct}); localStorage.setItem('mm_perf', JSON.stringify(perf));
+  if(pct>=60){ const att = JSON.parse(localStorage.getItem('mm_attendance')||'{}'); att[todayKey()]=true; localStorage.setItem('mm_attendance', JSON.stringify(att)); }
+  setStreak(loadAttendanceThisWeek()); drawAllCharts(); quizActive=false; if(auto) console.log('Auto-submitted quiz (demo)');
+}
+
+/* Camera/Mic demo */
+async function checkMedia(){
+  try{ const stream = await navigator.mediaDevices.getUserMedia({video:true,audio:true}); const v=$('testVideo'); v.srcObject = stream; v.classList.remove('hidden'); } catch(e){ alert('Camera/Mic permission denied or unavailable (demo).'); }
+}
+
+/* Performance & Charts */
+function renderAttendance(){ const log = JSON.parse(localStorage.getItem('mm_attendance')||'{}'); const keys = Object.keys(log).sort().slice(-60); if(!keys.length){ $('attendanceList').innerHTML = '<li class="small">No study days recorded yet.</li>'; return; } $('attendanceList').innerHTML = keys.reverse().map(k=>`<li><span>${k}</span><span>${log[k] ? '✅ Studied' : '❌ Missed'}</span></li>`).join(''); }
+
+let chartWeek=null, chartMonth=null, chartYear=null;
+function aggregatePerf(){
+  const perf = JSON.parse(localStorage.getItem('mm_perf')||'[]');
+  const byDay=[], labelsDay=[];
+  for(let i=6;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); const key=d.toISOString().slice(0,10); labelsDay.push(key.slice(5)); const entries = perf.filter(p=>p.date===key); const avg = entries.length ? Math.round(entries.reduce((a,b)=>a+b.pct,0)/entries.length) : 0; byDay.push(avg); }
+  const weekVals=[0,0,0,0], weekCount=[0,0,0,0]; const last28=perf.slice(-28); last28.forEach((p,idx)=>{ const w=Math.floor(idx/7); weekVals[w]+=p.pct; weekCount[w]++; });
+  const weekAvg = weekVals.map((s,i)=> weekCount[i] ? Math.round(s/weekCount[i]) : 0);
+  const months=new Array(12).fill(0), mcount=new Array(12).fill(0); perf.forEach(p=>{ const m=parseInt(p.date.slice(5,7),10)-1; months[m]+=p.pct; mcount[m]++; });
+  const monthAvg = months.map((s,i)=> mcount[i] ? Math.round(s/mcount[i]) : 0);
+  return {byDay, labelsDay, weekAvg, monthAvg};
+}
+function drawAllCharts(){
+  const ag = aggregatePerf();
+  if(chartWeek) chartWeek.destroy();
+  chartWeek = new Chart($('chartWeek'), { type:'line', data:{ labels: ag.labelsDay, datasets:[{ label:'% score', data: ag.byDay, borderColor:'#8b5cf6', backgroundColor:'rgba(99,102,241,.12)', fill:true }]}, options:{ plugins:{ legend:{ display:false }}, scales:{ y:{ beginAtZero:true, max:100 } } } });
+  if(chartMonth) chartMonth.destroy();
+  chartMonth = new Chart($('chartMonth'), { type:'bar', data:{ labels:['W1','W2','W3','W4'], datasets:[{ label:'Avg %', data: ag.weekAvg, backgroundColor:'rgba(34,211,238,.14)', borderColor:'#06b6d4', borderWidth:1 }]}, options:{ plugins:{ legend:{ display:false }}, scales:{ y:{ beginAtZero:true, max:100 } } } });
+  if(chartYear) chartYear.destroy();
+  chartYear = new Chart($('chartYear'), { type:'line', data:{ labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], datasets:[{ label:'Avg %', data: ag.monthAvg, borderColor:'#06b6d4', backgroundColor:'rgba(34,211,238,.08)', fill:true }]}, options:{ plugins:{ legend:{ display:false }}, scales:{ y:{ beginAtZero:true, max:100 } } } });
+}
+
+/* Settings (clear demo + visual dark) */
+function clearDemo(){ if(!confirm('Clear all demo data and reset app?')) return; localStorage.removeItem('mm_user'); localStorage.removeItem('mm_profile'); localStorage.removeItem('mm_settings'); localStorage.removeItem('mm_attendance'); localStorage.removeItem('mm_perf'); localStorage.removeItem('mm_marks'); localStorage.removeItem('mm_enrolled'); location.reload(); }
+function toggleVisualDark(){ const el=$('darkMode'); applyVisualDark(el.checked); const s=getSettings(); s.darkMode=el.checked; localStorage.setItem('mm_settings', JSON.stringify(s)); }
+function applyVisualDark(val){ if(val===false) document.body.style.filter='invert(1) hue-rotate(180deg)'; else document.body.style.filter='none'; }
+
+/* Mentor chat (simple demo replies) */
+function mentorReply(){
+  const q = $('mInput').value.trim();
+  if(!q) { alert('Type your question'); return; }
+  const responses = [
+    "Good question! Break it into small topics and practice problems daily.",
+    "Practice 8-10 focused problems per session and review mistakes.",
+    "Try a 45m focused study cycle, then 10m break. Repeat.",
+    "Work on fundamentals first — then speed up with timed practice."
+  ];
+  const a = responses[Math.floor(Math.random()*responses.length)];
+  const item = (who,txt) => `<li><div><b>${who}:</b> ${txt}</div></li>`;
+  $('mentorList').insertAdjacentHTML('beforeend', item('You', safe(q)));
+  $('mentorList').insertAdjacentHTML('beforeend', item('Mentor', a));
+  $('mInput').value = '';
+}
+
+/* Init & events */
+(function init(){
+  if(localStorage.getItem('mm_user')){ $('login').classList.add('hidden'); $('app').classList.remove('hidden'); }
+  if(!localStorage.getItem('mm_settings')) localStorage.setItem('mm_settings', JSON.stringify({darkMode:true, quickActions: quickActionsMaster.map(q=>q.id)}));
+  hydrate();
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden && quizActive) gradeAll(true); });
+})();
+document.querySelectorAll('.tab').forEach(t=> t.addEventListener('click', ()=>{ if(t.id==='tab-test') seedQuizzes(); if(t.id==='tab-performance'){ renderAttendance(); drawAllCharts(); } if(t.id==='tab-courses'){ renderCourses(); renderRecommendations(); } }));
+
+/* Utility */
+function safe(s){ return String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+</body>
+</html>
