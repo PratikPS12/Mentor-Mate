@@ -1,11 +1,29 @@
+import { handleClientFallback } from "./clientFallback";
+
 const getApiBase = () => {
-  if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+  const envUrl = process.env.NEXT_PUBLIC_API_URL;
   if (typeof window !== "undefined") {
+    const isHttps = window.location.protocol === "https:";
     const host = window.location.hostname || "127.0.0.1";
+    const isLocalhost = host === "localhost" || host === "127.0.0.1";
+
+    // If on a public production HTTPS host (like Vercel)
+    if (isHttps && !isLocalhost) {
+      // If envUrl is explicitly set to an HTTPS endpoint, use it
+      if (envUrl && envUrl.startsWith("https://")) {
+        return envUrl;
+      }
+      // Otherwise, return empty to use ultra-fast seamless client demo fallback
+      return "";
+    }
+
+    if (envUrl) return envUrl;
     return `${window.location.protocol}//${host}:8000/api/v1`;
   }
+  if (envUrl) return envUrl;
   return "http://127.0.0.1:8000/api/v1";
 };
+
 
 export interface User {
   id: string;
@@ -435,23 +453,46 @@ class ApiClient {
     }
 
     const apiBase = getApiBase();
-    const res = await fetch(`${apiBase}${endpoint}`, {
-      ...options,
-      headers,
-    });
 
-    if (!res.ok) {
-      let errMsg = "An error occurred";
-      try {
-        const errJson = await res.json();
-        errMsg = errJson.detail || errJson.message || errMsg;
-      } catch {
-        errMsg = res.statusText || errMsg;
-      }
-      throw new Error(errMsg);
+    // If running in production on Vercel without an external cloud backend,
+    // or if the URL is empty, execute directly in local client storage.
+    if (!apiBase) {
+      return handleClientFallback<T>(endpoint, options);
     }
 
-    return res.json();
+    try {
+      const res = await fetch(`${apiBase}${endpoint}`, {
+        ...options,
+        headers,
+      });
+
+      if (!res.ok) {
+        let errMsg = "An error occurred";
+        try {
+          const errJson = await res.json();
+          errMsg = errJson.detail || errJson.message || errMsg;
+        } catch {
+          errMsg = res.statusText || errMsg;
+        }
+        throw new Error(errMsg);
+      }
+
+      return await res.json();
+    } catch (err: any) {
+      // If network is unreachable, connection refused, or mixed-content blocked
+      const isNetworkError =
+        err instanceof TypeError ||
+        !err.message ||
+        err.message.includes("fetch") ||
+        err.message.includes("NetworkError") ||
+        err.message.includes("Failed to fetch");
+
+      if (isNetworkError) {
+        console.info(`[MentorMate] Backend at '${apiBase}' unreachable. Seamlessly activating local storage fallback.`);
+        return handleClientFallback<T>(endpoint, options);
+      }
+      throw err;
+    }
   }
 
   // Auth
